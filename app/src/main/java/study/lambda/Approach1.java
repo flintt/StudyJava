@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-
+ // 来源于教程： http://www.example.com/javatutorial/java/javaOO/lambdaexpressions.html
 //Approach 1: Create Methods That Search for Members That Match One Characteristic
 public class Approach1 {
     public static void main(String[] args){

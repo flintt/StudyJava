@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-//Approach 6: Use Standard Functional Interfaces with Lambda Expressions
+//Approach 7: Use Lambda Expressions Throughout Your Application
 public class Approach7 {
     public static void main(String[] args){
         int age = 10;
