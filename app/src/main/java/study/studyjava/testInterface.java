@@ -1,8 +1,9 @@
-package study.lambda;
+package study.studyjava;
 
 public interface testInterface {
     int i = 1; // 可以定义和声明变量
     static int j = 1; // static是多余的
+    abstract void absClass();// method的abstract是多余的
     public void add(int a, int b); // 对于interface里面的method, interface, class public都是多余的
     static int add(int a){
         return a;
@@ -18,4 +19,7 @@ public interface testInterface {
 
         }
     }// 可以有内部class，也能一环套一环
+    abstract class absClass{
+
+    }
 }
