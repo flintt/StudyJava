@@ -23,4 +23,7 @@ public class Person {
     public Sex getGender(){
         return gender;
     }
+    public String getEmailAddress(){
+        return emailAddress;
+    }
 }
