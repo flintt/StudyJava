@@ -33,7 +33,8 @@ public class Approach5 {
 //        }); // 如果不另外建一个java文件实现CheckPersonEligibleForSelectiveService class，用匿名class直接实现逻辑
 //3
         printPersons(lp1,
-                (Person p) -> p.getGender() == Person.Sex.MALE
+                (Person p) -> p.getGender() == Person.Sex.MALE  // 由于接口CheckPerson里面只有一个abstract method也可以像下面这样写
+//                p -> p.getGender() == Person.Sex.MALE
                         && p.getAge() >= 18
                         && p.getAge() <= 25
         ); // 使用lambda表达式替换上面的区块
