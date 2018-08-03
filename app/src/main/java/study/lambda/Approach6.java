@@ -12,14 +12,14 @@ public class Approach6 {
         List<Person> lp1 = new ArrayList<Person>();
         Approach6 a1 = new Approach6();
 
-        printPersons(lp1,
+        printPersonsWithPredicate(lp1,
                 (Person p) -> p.getGender() == Person.Sex.MALE
                         && p.getAge() >= 18
                         && p.getAge() <= 25
         );
     }
 
-    public static void printPersons(
+    public static void printPersonsWithPredicate(
             List<Person> roster, Predicate<Person> tester) {    // 使用Predicate泛型替换了原来在外面定义的CheckPerson接口
         for (Person p : roster) {
             if (tester.test(p)) {
