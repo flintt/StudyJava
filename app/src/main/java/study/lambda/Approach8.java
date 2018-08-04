@@ -29,7 +29,7 @@ public class Approach8 {
                         && p.getAge() <= 25,
                 p -> p.getEmailAddress(),
                 email -> System.out.println(email)
-        );
+        ); // 在method修改后，使用method以及里面的逻辑几乎没有变化
     }
 
 
