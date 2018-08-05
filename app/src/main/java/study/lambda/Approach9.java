@@ -26,15 +26,32 @@ public class Approach9 {
             .filter( p -> p.getGender() == Person.Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25)
             .map(p -> p.getEmailAddress())
             .forEach(email -> System.out.println(email));
-
-        System.out.println(((Integer)age).compareTo(12));
-
-
-    }
-    class PersonAgeComparator implements Comparator<Person> {
-        public int compare(Person a, Person b) {
-            return a.getBirthday().compareTo(b.getBirthday());
+//        下面这4种都是一样的
+//        1：使用了自己实现的Comparator接口
+//        2：把1的表示lambda表达式化
+//        3：用了Person类里的比较method
+//        4：lambda表达式调用method的时候可以method reference化
+        Person[] rosterAsArray = lp1.toArray(new Person[lp1.size()]);
+// 1
+        class PersonAgeComparator implements Comparator<Person> {
+            public int compare(Person a, Person b) {
+                return a.getBirthday().compareTo(b.getBirthday());
+            }
         }
+        Arrays.sort(rosterAsArray, new PersonAgeComparator());
+//2
+        Arrays.sort(rosterAsArray,
+                (Person a, Person b) -> {
+                    return a.getBirthday().compareTo(b.getBirthday());
+                }
+        );
+//3
+        Arrays.sort(rosterAsArray,
+                (a, b) -> Person.compareByAge(a, b)
+        );
+//4
+        Arrays.sort(rosterAsArray, Person::compareByAge);
+
     }
 
 
