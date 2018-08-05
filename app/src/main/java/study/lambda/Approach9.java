@@ -44,11 +44,13 @@ public class Approach9 {
         Arrays.sort(rosterAsArray, Person::compareByAge);
 
         Set<Person> rosterSetLambda = transferElements(roster, () -> { return new HashSet<>(); });
+        Set<Person> rosterSet = transferElements(roster, HashSet::new);
+        Set<Person> rosterSet2 = transferElements(roster, HashSet<Person>::new);
     }
 
     public static <T, SOURCE extends Collection<T>, DEST extends Collection<T>> //
     DEST transferElements(
-        SOURCE sourceCollection, // 一个由collection接口扩展的SOURCE类的变量？？？
+        SOURCE sourceCollection, // 一个由collection接口扩展的SOURCE类的parameter？？？
         Supplier<DEST> collectionFactory) { // 一个collection接口扩展的DEST类，并且实现了Supplier接口？？？
 
         DEST result = collectionFactory.get();
