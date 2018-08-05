@@ -1,6 +1,7 @@
 package study.lambda;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 public class Person {
     public enum Sex {
@@ -25,5 +26,8 @@ public class Person {
     }
     public String getEmailAddress(){
         return emailAddress;
+    }
+    public LocalDate getBirthday() {
+        return birthday;
     }
 }

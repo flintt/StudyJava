@@ -1,6 +1,8 @@
 package study.lambda;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -25,7 +27,14 @@ public class Approach9 {
             .map(p -> p.getEmailAddress())
             .forEach(email -> System.out.println(email));
 
+        System.out.println(((Integer)age).compareTo(12));
 
+
+    }
+    class PersonAgeComparator implements Comparator<Person> {
+        public int compare(Person a, Person b) {
+            return a.getBirthday().compareTo(b.getBirthday());
+        }
     }
 
 
