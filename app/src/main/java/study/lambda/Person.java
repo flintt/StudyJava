@@ -30,4 +30,7 @@ public class Person {
     public LocalDate getBirthday() {
         return birthday;
     }
+    public static int compareByAge(Person a, Person b) {
+        return a.birthday.compareTo(b.birthday);
+    }}
 }
