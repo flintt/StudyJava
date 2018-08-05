@@ -45,8 +45,8 @@ public class Approach8 {
 //            }
 //        }
 //    } // 虽然用了generic，但是限制了type为<Person> <String>。。。
-    public static <X, Y> void processElements(
-            Iterable<X> source,
+    public static <X, Y> void processElements(// 用到的参数类型都在这里列出来
+            Iterable<X> source, // 4个参数
             Predicate<X> tester,
             Function <X, Y> mapper,
             Consumer<Y> block) {
