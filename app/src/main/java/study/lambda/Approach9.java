@@ -2,36 +2,27 @@ package study.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 //Approach 9: Use Aggregate Operations That Accept Lambda Expressions as Parameters
 public class Approach9 {
     public static void main(String[] args){
         int age = 10;
-        List<Person> lp1 = new ArrayList<Person>();
-
-        processElements(
-                lp1,
-                p -> p.getGender() == Person.Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25,
-                p -> p.getEmailAddress(),
-                email -> System.out.println(email)
-        ); // 在method修改后，使用method以及里面的逻辑几乎没有变化
-
-        lp1
-            .stream()  // 对lp1对象进行stream操作，下面的filter, map, forEach都定义在Stream类中。把原先的表达式每行放在括号中。
-            .filter( p -> p.getGender() == Person.Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25)
-            .map(p -> p.getEmailAddress())
-            .forEach(email -> System.out.println(email));
+        List<Person> roster = new ArrayList<Person>();
 //        下面这4种都是一样的
 //        1：使用了自己实现的Comparator接口
 //        2：把1的表示lambda表达式化
 //        3：用了Person类里的比较method
 //        4：lambda表达式调用method的时候可以method reference化
-        Person[] rosterAsArray = lp1.toArray(new Person[lp1.size()]);
+        Person[] rosterAsArray = roster.toArray(new Person[roster.size()]);
 // 1
         class PersonAgeComparator implements Comparator<Person> {
             public int compare(Person a, Person b) {
@@ -52,19 +43,19 @@ public class Approach9 {
 //4
         Arrays.sort(rosterAsArray, Person::compareByAge);
 
+        Set<Person> rosterSetLambda = transferElements(roster, () -> { return new HashSet<>(); });
     }
 
+    public static <T, SOURCE extends Collection<T>, DEST extends Collection<T>> //
+    DEST transferElements(
+        SOURCE sourceCollection, // 一个由collection接口扩展的SOURCE类的变量？？？
+        Supplier<DEST> collectionFactory) { // 一个collection接口扩展的DEST类，并且实现了Supplier接口？？？
 
-    public static <X, Y> void processElements(
-            Iterable<X> source,
-            Predicate<X> tester,
-            Function <X, Y> mapper,
-            Consumer<Y> block) {
-        for (X p : source) {
-            if (tester.test(p)) {
-                Y data = mapper.apply(p);
-                block.accept(data);
-            }
+        DEST result = collectionFactory.get();
+        for (T t : sourceCollection) {
+            result.add(t);
         }
-    } // 彻底generic化，没有限制类型j
+        return result;
+    } // 这个属于generic的内容吧？实在是看不懂这一段代码是干嘛了 todo
+
 }
