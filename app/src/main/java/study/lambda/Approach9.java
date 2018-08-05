@@ -35,6 +35,8 @@ public class Approach9 {
                 (Person a, Person b) -> {
                     return a.getBirthday().compareTo(b.getBirthday());
                 }
+//                Comparator.comparing(Person::getBirthday) // 等效于上面
+
         );
 //3
         Arrays.sort(rosterAsArray,
