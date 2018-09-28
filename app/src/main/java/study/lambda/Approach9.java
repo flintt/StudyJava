@@ -32,9 +32,7 @@ public class Approach9 {
         Arrays.sort(rosterAsArray, new PersonAgeComparator());
 //2
         Arrays.sort(rosterAsArray,
-                (Person a, Person b) -> {
-                    return a.getBirthday().compareTo(b.getBirthday());
-                }
+                Comparator.comparing(Person::getBirthday)
 //                Comparator.comparing(Person::getBirthday) // 等效于上面
 
         );
