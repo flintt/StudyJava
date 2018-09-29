@@ -1,6 +1,7 @@
 package study.concurrency;
 
 public class SimpleThreads2 {
+    static Counter counter = new Counter();
 
     static void threadMessage(String message) {
         String threadName =
@@ -13,7 +14,7 @@ public class SimpleThreads2 {
     private static class Adder
             implements Runnable {
         public void run() {
-            Counter counter = new Counter();
+            threadMessage("Adder Orig " + String.valueOf(counter.value()));
             counter.increment();
             threadMessage(String.valueOf(counter.value()));
         }
@@ -22,7 +23,7 @@ public class SimpleThreads2 {
     private static class Miner
             implements Runnable {
         public void run() {
-            Counter counter = new Counter();
+            threadMessage("Miner Orig " + String.valueOf(counter.value()));
             counter.decrement();
             threadMessage(String.valueOf(counter.value()));
         }
@@ -49,5 +50,5 @@ public class SimpleThreads2 {
         Thread t2 = new Thread(new Miner());
         t1.start();
         t2.start();
-    }
+    } // class调用里面的方法都需要实例化一个新的对象，怎么会有相互干扰？【正是不是static的才这样，这个例子最后的结果有时候是1有时候是-1】
 }
